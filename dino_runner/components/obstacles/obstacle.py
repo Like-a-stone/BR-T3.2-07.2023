@@ -1,6 +1,6 @@
 from dino_runner.utils.constants import SCREEN_WIDTH
 class Obstacle:
-    def __init__(self, images, type):
+    def __init__(self, images, type): #O modulo cactus.py traz para seu "pai" as imagens, num aleatorio, POS_Y
         self.image = images[type]
         self.rect = self.image.get_rect()
         self.rect.x = SCREEN_WIDTH
