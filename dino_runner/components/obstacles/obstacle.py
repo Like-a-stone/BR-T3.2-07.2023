@@ -6,7 +6,7 @@ class Obstacle:
         self.rect.x = SCREEN_WIDTH
 
     def draw(self, screen):
-        screen.blit(self.image, (self.rect.x, self.rect.y))
+            screen.blit(self.image, (self.rect.x, self.rect.y))
   
     def update(self, game_speed, obstacles):
         self.rect.x -= game_speed    
