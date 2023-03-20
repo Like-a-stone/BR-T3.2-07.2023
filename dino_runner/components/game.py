@@ -3,6 +3,7 @@ import pygame
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.score import Score
+from dino_runner.components.GameOver import *
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 class Game:
     def __init__(self):
@@ -19,6 +20,7 @@ class Game:
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
         self.score = Score()
+        self.game_over =  GameOver()
 
     def run(self):
         # Game loop: events - update - draw
@@ -49,7 +51,14 @@ class Game:
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
         self.score.draw(self.screen)
-        #pygame.display.update()
+
+        if not self.playing:
+            self.game_over.draw(self.screen)
+            
+
+
+    
+        pygame.display.update()
         pygame.display.flip()
 
     def draw_background(self):
