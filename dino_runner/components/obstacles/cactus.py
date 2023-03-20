@@ -6,16 +6,14 @@ class Cactus(Obstacle):
     
         self.type = random.randint(0,2)
         super().__init__(images, self.type)
-        
         self.rect.y = 320    
 
-class CactusLarge(Obstacle):
+class CactusLarge(Obstacle):  #Criada Uma class para os Cactus maiores.
     def __init__(self, images):
     
         self.type = random.randint(0,2)
         super().__init__(images, self.type)
-        
-        self.rect.y = 300    
+        self.rect.y = 300 #Posição alterada para que ambos os cactus fiquem alinhados ao solo.   
 
         
 

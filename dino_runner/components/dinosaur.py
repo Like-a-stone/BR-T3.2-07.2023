@@ -54,7 +54,7 @@ class Dinosaur:
             self.dino_run = False
 
         if user_input[pygame.K_DOWN] and self.dino_jump:
-            self.jump_vel -= 1.5
+            self.jump_vel -= 2
         elif not self.dino_duck and not self.dino_jump:
             self.dino_run = True
 

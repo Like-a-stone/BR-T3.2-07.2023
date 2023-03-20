@@ -8,6 +8,13 @@ SCREEN_WIDTH = 1100
 FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 
+#New Aseets:
+METEOR = [
+    pygame.image.load(os.path.join(IMG_DIR, "Meteor/Meteor1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Meteor/Meteor2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Meteor/Meteor3.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Meteor/Meteor4.png")),
+] 
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "DinoWallpaper.png"))
 
