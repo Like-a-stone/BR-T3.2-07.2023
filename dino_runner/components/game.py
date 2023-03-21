@@ -49,13 +49,13 @@ class Game:
         if self.messages.point == 300: 
             self.game_speed += 3      #Easy
         elif self.messages.point == 600: 
-            self.game_speed += 3      #Medium
+            self.game_speed += 5      #Medium
         elif self.messages.point == 1200:
-            self.game_speed += 3      #Hard
+            self.game_speed +=  8    #Hard
         elif self.messages.point == 2000:
-            self.game_speed += 6     #Very Hard
+            self.game_speed += 6      #Very Hard
         elif self.messages.point == 3000:
-            self.game_speed += 8      #DOOM
+            self.game_speed += 10      #DOOM
 
     def events(self):
         for event in pygame.event.get():

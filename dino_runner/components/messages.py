@@ -13,8 +13,8 @@ class Messages:
         if self.point == 300 or self.point == 600 or self.point == 1200 or self.point == 2000 or self.point == 3000:
             self.score_sound = pygame.mixer.Sound('dino_runner/assets/Sound/score_sound.wav') #Efeito de som 
             self.score_sound.play() #Executar o som
-        self.point += 1  #Adicionando Pontos
-        self.text = self.font.render("Pontuação: " + str(self.point), True, ((0, 0, 0)))
+        self.point += 1             #Adicionando Pontos
+        self.text = self.font.render("Score: " + str(self.point), True, ((0, 0, 0)))
         screen.blit(self.text, (800, 30))
 
     def game_over(self, screen): # imprimir Game Over na tela 
@@ -22,19 +22,19 @@ class Messages:
         screen.blit(self.text, (450 , 200))
 
     def level(self, screen, game_speed):
-        if self.point == 300: 
+        if self.point <= 300: 
             self.text = self.font.render("EASY", True, ((0, 0, 0))) # Dependendo do score que estamos o texto muda.
             screen.blit(self.text, (100, 30))  
-        elif self.point == 600: 
+        elif self.point <= 600: 
             self.text = self.font.render("MEDIUM", True, ((0, 0, 0)))
             screen.blit(self.text, (100, 30))
-        elif self.point == 1200: 
+        elif self.point <= 1200: 
             self.text = self.font.render("HARD", True, ((0, 0, 0)))
             screen.blit(self.text, (100, 30))    
-        elif self.point == 2000: 
+        elif self.point <= 2000: 
             self.text = self.font.render("VERY HARD", True, ((0, 0, 0)))
             screen.blit(self.text, (100, 30))
-        elif self.point == 3000 : 
+        elif self.point <= 3000 : 
             self.text = self.font.render("DOOM", True, ((0, 0, 0)))
             screen.blit(self.text, (100, 30))           
     
@@ -47,6 +47,12 @@ class Messages:
             text_rect.center = (550, 300)
             game.screen.blit(text, text_rect)
         else:
+            self.text = self.font.render("Score: " + str(self.point), True, ((0, 0, 0))) #Score Pos-morte
+            game.screen.blit(self.text, (100, 30))
+
+            self.text = self.font.render("Death: " + str(game.death_count), True, ((0, 0, 0))) #Quantas mortes houve
+            game.screen.blit(self.text, (100, 80))
+
             t = self.font.render("Press (c) to keep playing", True, (0,0,0))
             t_rect = t.get_rect()
             t_rect.center = (550, 200)
@@ -63,7 +69,7 @@ class Messages:
 
     def handle_events_on_menu(self, game):
         self.button_sound = pygame.mixer.Sound('dino_runner/assets/Sound/button_sound.wav') #efeito de som para botões
-        self.button_sound.set_volume(0.7)
+        self.button_sound.set_volume(0.7) #Controlar o volume 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game.playing = False
@@ -72,10 +78,11 @@ class Messages:
                 if pygame.key.get_pressed()[pygame.K_s] and game.death_count == 0:
                     self.button_sound.play()
                     game.run()
-                elif pygame.key.get_pressed()[pygame.K_c]:
+                elif pygame.key.get_pressed()[pygame.K_c]: #Continuar
                     self.button_sound.play()
                     game.run()   
                 elif pygame.key.get_pressed()[pygame.K_f]: #Botão responsável por recomeçar o jogo do zero. 
                     self.point = 0
+                    game.game_speed = 20
                     self.button_sound.play()
                     game.run()        
