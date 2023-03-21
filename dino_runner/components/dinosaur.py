@@ -10,6 +10,8 @@ class Dinosaur:
     def __init__(self):
         self.image = RUNNING[0]
         self.dino_rect = self.image.get_rect()
+        pygame.mixer.init()
+        self.jump_sound = pygame.mixer.Sound('dino_runner/assets/Sound/jump_sound.wav')
         self.dino_rect.x = X_POS
         self.dino_rect.y = Y_POS
         self.dino_run = True
@@ -27,7 +29,9 @@ class Dinosaur:
        
     def jump(self):
         self.image = JUMPING
+
         if self.dino_jump:
+            
             self.dino_rect.y -= self.jump_vel*4
             self.jump_vel -=0.8
         
@@ -46,6 +50,7 @@ class Dinosaur:
         
     def update(self, user_input):
         if user_input[pygame.K_UP] and not self.dino_jump:
+            self.jump_sound.play()
             self.dino_jump = True
             self.dino_run = False
 

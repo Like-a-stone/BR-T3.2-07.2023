@@ -7,7 +7,7 @@ class Bird(Obstacle):
         self.type =0   #Imagem na lista
         self.time = 0  #Intervalos para a animação
         super().__init__(images, self.type)
-        self.RANDOM_POS = [190, 250, 300]  #Posições aleatorias para o Bird
+        self.RANDOM_POS = [200, 250, 300]  #Posições aleatorias para o Bird
         self.rect.y = random.choice(self.RANDOM_POS)
 
     def draw(self, screen):

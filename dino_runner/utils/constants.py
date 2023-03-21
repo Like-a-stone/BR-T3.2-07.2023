@@ -10,6 +10,13 @@ FONT_STYLE = "freesansbold.ttf"
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 
 #New Aseets:
+BIRD2 = [
+    pygame.image.load(os.path.join(IMG_DIR, "Bird2/Bird1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird2/Bird2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird2/Bird3.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird2/Bird4.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird2/Bird5.png")),
+]
 METEOR = [
     pygame.image.load(os.path.join(IMG_DIR, "Meteor/Meteor1.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Meteor/Meteor2.png")),
