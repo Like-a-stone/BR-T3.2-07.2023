@@ -22,19 +22,19 @@ class Messages:
         screen.blit(self.text, (450 , 200))
 
     def level(self, screen, game_speed):
-        if game_speed == 20: 
-            self.text = self.font.render("EASY", True, ((0, 0, 0))) # Dependndo do speed que estamos o texto muda.
+        if self.point == 300: 
+            self.text = self.font.render("EASY", True, ((0, 0, 0))) # Dependendo do score que estamos o texto muda.
             screen.blit(self.text, (100, 30))  
-        elif game_speed == 25: 
+        elif self.point == 600: 
             self.text = self.font.render("MEDIUM", True, ((0, 0, 0)))
             screen.blit(self.text, (100, 30))
-        elif game_speed == 30: 
+        elif self.point == 1200: 
             self.text = self.font.render("HARD", True, ((0, 0, 0)))
             screen.blit(self.text, (100, 30))    
-        elif game_speed == 45: 
+        elif self.point == 2000: 
             self.text = self.font.render("VERY HARD", True, ((0, 0, 0)))
             screen.blit(self.text, (100, 30))
-        elif game_speed == 53 : 
+        elif self.point == 3000 : 
             self.text = self.font.render("DOOM", True, ((0, 0, 0)))
             screen.blit(self.text, (100, 30))           
     
@@ -47,14 +47,14 @@ class Messages:
             text_rect.center = (550, 300)
             game.screen.blit(text, text_rect)
         else:
-            t = self.font.render("Press (f) to start playing", True, (0,0,0))
+            t = self.font.render("Press (c) to keep playing", True, (0,0,0))
             t_rect = t.get_rect()
-            t_rect.center = (550, 300)
+            t_rect.center = (550, 200)
             game.screen.blit(t, t_rect)
 
-            text = self.font.render("Press (c) to start playing", True, (0,0,0))
+            text = self.font.render("Press (f) to start over", True, (0,0,0))
             text_rect = text.get_rect()
-            text_rect.center = (550, 200)
+            text_rect.center = (550, 300)
             game.screen.blit(text, text_rect)
             
 
