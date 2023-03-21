@@ -1,4 +1,5 @@
 import pygame
+from dino_runner.utils.constants import FONT_STYLE
 class Score:
     def __init__(self):
         self.font = pygame.font.SysFont("Arial", 32) #Criando atributo para guardar fonte.
@@ -7,7 +8,7 @@ class Score:
         self.y = 30
         self.text = ""  #Atributo para receber os pontos em string, a fonte, e cor.
 
-#Oque será exibido na tela:
+#O que será exibido na tela:
     def draw(self, screen):  
         self.point += 1  #Adicionando Pontos
         self.text = self.font.render("Pontuação: " + str(self.point), True, ((0, 0, 0)))#True: deve ser suaviazado?
@@ -15,14 +16,14 @@ class Score:
 
 class GameOver:
     def __init__(self):    #Informações sobre tamanho e fonte de texto
-        self.x = 550       #Tamanhos da objeto
-        self.y = 300
+        self.x = 350  
+        self.y = 200
         self.font = pygame.font.SysFont("Arial", 50)
         self.text = ""
 
     def draw(self, screen):
         self.text = self.font.render("GAME OVER !!!", True, ((0, 0, 0)))
-        pygame.time.wait(500)
+        
         screen.blit(self.text, (self.x, self.y))
 
 class Mode():
@@ -33,8 +34,8 @@ class Mode():
         self.text = ""
 
     def draw(self, screen, game_speed):
-        if game_speed <= 25: 
-            self.text = self.font.render("EASY", True, ((0, 0, 0)))
+        if game_speed == 25: 
+            self.text = self.font.render("EASY", True, ((0, 0, 0))) # Dependndo do speed que estamos o texto muda.
             screen.blit(self.text, (self.x, self.y))  
         elif game_speed == 30: 
             self.text = self.font.render("MEDIUM", True, ((0, 0, 0)))

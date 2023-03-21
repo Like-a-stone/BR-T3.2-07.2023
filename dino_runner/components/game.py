@@ -13,9 +13,11 @@ class Game:
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         self.clock = pygame.time.Clock()
         self.playing = False
+        self.executing = False
         self.game_speed = 20
         self.x_pos_bg = 0
         self.y_pos_bg = 380
+        self.death_count = 0
         
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
@@ -23,15 +25,25 @@ class Game:
         self.game_over = GameOver()
         self.Mode = Mode()
 
+    def execute(self):
+        self.executing = True
+        while self.executing:
+            if not self.playing:
+                self.show_menu()  
+    pygame.display.quit() 
+    pygame.quit()        
+
     def run(self):
         # Game loop: events - update - draw
         self.playing = True
+        self.obstacle_manager.reset_obstacles()
         while self.playing:
             self.More_Speed() #Nova Função para aumentar dificuldade.
             self.events()
             self.update()
             self.draw()
-        pygame.quit()
+        pygame.time.delay(650)
+        
 
     def More_Speed(self): #Nova Função para aumentar velocidade do jogo conforme o score aumenta.
 #Quanto maior for sua pontuação mais rápido o jogo será.
@@ -50,6 +62,7 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
+                self.execute = False
 
     def update(self):
         user_input = pygame.key.get_pressed()
@@ -67,7 +80,6 @@ class Game:
         self.score.draw(self.screen)
         self.Mode.draw(self.screen, self.game_speed)
 
-
         if not self.playing:
             self.game_over.draw(self.screen)
  
@@ -81,4 +93,40 @@ class Game:
         if self.x_pos_bg <= -image_width:
             self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
+
         self.x_pos_bg -= self.game_speed
+    
+    def show_menu(self):
+        self.screen.fill((255, 255, 255))
+
+        half_screen_height = SCREEN_HEIGHT // 2
+        half_screen_width = SCREEN_WIDTH // 2
+
+        if self.death_count == 0:
+            font =pygame.font.Font(FONT_STYLE, 22)
+            text = font.render("Press (s) to start playing", True, (0,0,0))
+            text_rect = text.get_rect()
+            text_rect.center = (half_screen_width, half_screen_height)
+            self.screen.blit(text, text_rect)
+        else:
+            font = pygame.font.Font(FONT_STYLE, 22)
+            text = font.render("Press (c) to start playing", True, (0,0,0))
+            text_rect = text.get_rect()
+            text_rect.center = (half_screen_width, half_screen_height)
+            self.screen.blit(text, text_rect)
+
+        pygame.display.update() 
+
+        self.handle_events_on_menu()
+
+        
+    def handle_events_on_menu(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.playing = False
+                self.executing = False
+            elif event.type == pygame.KEYDOWN:
+                if pygame.key.get_pressed()[pygame.K_s] and self.death_count == 0:
+                    self.run()
+                elif pygame.key.get_pressed()[pygame.K_c]:
+                    self.run()    

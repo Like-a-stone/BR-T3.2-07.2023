@@ -4,7 +4,7 @@ import random
 class Cactus(Obstacle):
     def __init__(self, images):
     
-        self.type = random.randint(0,2)
+        self.type = random.randint(0,2) #Imagem aleatória
         super().__init__(images, self.type)
         self.rect.y = 320    
 

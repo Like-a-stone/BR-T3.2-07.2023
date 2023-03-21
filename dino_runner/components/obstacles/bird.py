@@ -14,7 +14,7 @@ class Bird(Obstacle):
 
         screen.blit(self.images[self.type], (self.rect.x, self.rect.y))
         self.time += 1     
-        if self.time > 12:  #Controlar o temporizador para Bird bate asas.
+        if self.time > 9:  #Controlar o temporizador para Bird bate asas.
             self.type += 1
             self.time = 0
         if self.type == 2:
