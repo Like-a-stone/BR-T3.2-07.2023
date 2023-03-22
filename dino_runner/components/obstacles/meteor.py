@@ -1,9 +1,9 @@
 import random
 from dino_runner.components.obstacles.obstacle import Obstacle 
 class Meteor(Obstacle):
-    def __init__(self, images): #images[0,1]
-        self.type =0   #Primeira magem na lista
-        self.time = 0  #Intervalos para a animação
+    def __init__(self, images): 
+        self.type =0  
+        self.time = 0  
         super().__init__(images, self.type)
         self.rect.y = 0
         self.rect.x = 1000
@@ -11,7 +11,7 @@ class Meteor(Obstacle):
     def draw(self, screen):
         screen.blit(self.images[self.type], (self.rect.x, self.rect.y))
         self.time += 1     
-        if self.time > 2:  #Controlar o temporizador para animação.
+        if self.time > 2:  
             self.type += 1
             self.time = 0
         if self.rect.y < 300:

@@ -14,7 +14,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.playing = False
         self.executing = False
-        self.game_speed = 20
+        self.game_speed = 30
         self.x_pos_bg = 0
         self.y_pos_bg = 380
         self.death_count = 0
@@ -28,34 +28,39 @@ class Game:
         self.executing = True
         while self.executing:
             if not self.playing:
-                self.messages.show_menu(self)  
+                self.messages.show_menu(self)
+                MENU_SOUND.play()
+                
+               
     pygame.display.quit() 
     pygame.quit()        
 
     def run(self):
         # Game loop: events - update - draw
+        MENU_SOUND.stop()
+        GAME_SOUND.play()
         self.playing = True
         self.obstacle_manager.reset_obstacles()
         while self.playing:
-            self.More_Speed() #Nova Função para aumentar dificuldade.
+            self.More_Speed() 
             self.events()
             self.update()
             self.draw()
+        GAME_SOUND.stop()    
         pygame.time.delay(650)
         
 
-    def More_Speed(self): #Nova Função para aumentar velocidade do jogo conforme o score aumenta.
-#Quanto maior for sua pontuação mais rápido o jogo será.
+    def More_Speed(self): 
         if self.messages.point == 300: 
-            self.game_speed += 3      #Easy
+            self.game_speed += 3      
         elif self.messages.point == 600: 
-            self.game_speed += 5      #Medium
+            self.game_speed += 5    
         elif self.messages.point == 1200:
-            self.game_speed +=  8    #Hard
+            self.game_speed +=  8   
         elif self.messages.point == 2000:
-            self.game_speed += 6      #Very Hard
+            self.game_speed += 6    
         elif self.messages.point == 3000:
-            self.game_speed += 10      #DOOM
+            self.game_speed += 10     
 
     def events(self):
         for event in pygame.event.get():
@@ -70,19 +75,21 @@ class Game:
         self.obstacle_manager.update(self)     
         
     def draw(self):
+        
         self.clock.tick(FPS)
-        self.screen.fill((255, 255, 255))
+        
+        self.floor()
         self.draw_background()
-        self.cloud() #Novo desenho para nuvem
+        self.cloud() 
         
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
         self.messages.score(self.screen)
-        self.messages.level(self.screen, self.game_speed)
+        self.messages.level(self.screen)
 
         if not self.playing:
             self.messages.game_over(self.screen)
- 
+
         pygame.display.update()
         pygame.display.flip()
 
@@ -95,10 +102,14 @@ class Game:
             self.x_pos_bg = 0
         self.x_pos_bg -= self.game_speed
 
+    def floor(self):
+         self.screen.blit(BACKGROUND, (0, 0))
+            
+
     def cloud(self):
-        self.screen.blit(CLOUD, (self.pos_Cloud, 200)) #Como a nuvem deve ser desenhada na tela.
-        self.pos_Cloud -=  self.game_speed -15  # Movimento da nuvem
-        if self.pos_Cloud < -SCREEN_WIDTH:    # Se a nuvem alcançar o canto da tela, outra aparecerá
+        self.screen.blit(CLOUD, (self.pos_Cloud, 200)) 
+        self.pos_Cloud -=  self.game_speed  
+        if self.pos_Cloud < -SCREEN_WIDTH:    
             self.pos_Cloud = SCREEN_WIDTH
 
 
