@@ -5,6 +5,7 @@ class Messages:
     def __init__(self):
         pygame.mixer.init()
         self.font = pygame.font.Font(FONT_STYLE, 32) 
+        self.clock = pygame.time.Clock()
         self.text = ""  
         self.point = 0
 
@@ -14,7 +15,7 @@ class Messages:
             SCORE_SOUND.play() 
 
         self.point += 1             
-        self.text = self.font.render("Score: " + str(self.point), True, ((0, 0, 0)))
+        self.text = self.font.render("Score: " + str(self.point), True, ((255, 255, 0)))
         screen.blit(self.text, (800, 30))
 
     def game_over(self, screen): 
@@ -22,19 +23,19 @@ class Messages:
 
     def level(self, screen):
         if self.point <= 300: 
-            self.text = self.font.render("EASY", True, ((0, 0, 0))) 
+            self.text = self.font.render("EASY", True, ((0, 255, 0))) 
             screen.blit(self.text, (100, 30))  
         elif self.point <= 600: 
-            self.text = self.font.render("MEDIUM", True, ((0, 0, 0)))
+            self.text = self.font.render("MEDIUM", True, ((255, 255, 0)))
             screen.blit(self.text, (100, 30))
         elif self.point <= 1200: 
-            self.text = self.font.render("HARD", True, ((0, 0, 0)))
+            self.text = self.font.render("HARD", True, ((255, 0, 0)))
             screen.blit(self.text, (100, 30))    
         elif self.point <= 2000: 
-            self.text = self.font.render("VERY HARD", True, ((0, 0, 0)))
+            self.text = self.font.render("VERY HARD", True, ((255, 0, 255)))
             screen.blit(self.text, (100, 30))
         elif self.point <= 3000 : 
-            self.text = self.font.render("DOOM", True, ((0, 0, 0)))
+            self.text = self.font.render("DOOM", True, ((136, 0, 255)))
             screen.blit(self.text, (100, 30))           
     
     def show_menu(self, game): 
@@ -47,18 +48,18 @@ class Messages:
             game.screen.blit(text, text_rect)
         else: 
             game.screen.blit(GAME_OVER, (350 , 40))
-            self.text = self.font.render("Score: " + str(self.point), True, ((0, 0, 0))) 
+            self.text = self.font.render("Score: " + str(self.point), True, ((255, 255, 0))) 
             game.screen.blit(self.text, (100, 60))
    
             self.text = self.font.render("Death: " + str(game.death_count), True, ((0, 0, 0))) 
             game.screen.blit(self.text, (100, 100))
 
-            t = self.font.render("Press (c) to keep playing", True, (0,0,0))
+            t = self.font.render("Press (c) to keep playing", True, (0,0,255))
             t_rect = t.get_rect()
             t_rect.center = (550, 200)
             game.screen.blit(t, t_rect)
 
-            text = self.font.render("Press (f) to start over", True, (0,0,0))
+            text = self.font.render("Press (f) to start over", True, (0,255,255))
             text_rect = text.get_rect()
             text_rect.center = (550, 300)
             game.screen.blit(text, text_rect)
@@ -90,11 +91,11 @@ class Messages:
             time_to_show = round((game.player.power_up_time_up - pygame.time.get_ticks())/1000, 2)
             
             if time_to_show >=0:
-                text = self.font.render(f"Power Up: {time_to_show}", True, (255,0,0))
+                text = self.font.render("Bonus: " + str(time_to_show), True, (255,255,255))
                 text_rect = text.get_rect()
                 text_rect.x = 425
                 text_rect.y = 100
-                self.screen.blit(text, text_rect)
+                game.screen.blit(text, text_rect)
             else:
                 game.player.has_power_up = False
                 game.player.type = DEFAULT_TYPE                    

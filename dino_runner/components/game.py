@@ -88,6 +88,8 @@ class Game:
         self.power_up_manager.draw(self.screen)
         self.messages.score(self.screen)
         self.messages.level(self.screen)
+        self.messages.draw_power_up_time(self)
+     
 
         if not self.playing:
             self.messages.game_over(self.screen)
