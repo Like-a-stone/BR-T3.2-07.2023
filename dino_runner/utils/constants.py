@@ -38,6 +38,7 @@ BIRD2 = [
     pygame.image.load(os.path.join(IMG_DIR, "Bird2/Bird3.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Bird2/Bird4.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Bird2/Bird5.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird2/Bird6.png"))
 ]
 METEOR = [
     pygame.image.load(os.path.join(IMG_DIR, "Meteor/1.png")),
@@ -111,4 +112,6 @@ BG = pygame.image.load(os.path.join(IMG_DIR, 'Background/Floor.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
+SHIELD_TYPE = "shield"
 DEFAULT_TYPE = "default"
+HAMMER_TYPE = "Hammer"

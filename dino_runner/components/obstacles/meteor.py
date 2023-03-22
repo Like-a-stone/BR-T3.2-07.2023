@@ -23,7 +23,7 @@ class Meteor(Obstacle):
 
     def update(self, game_speed, obstacles):
         self.rect.y += 10
-        self.rect.x -= 25
+        self.rect.x -= 22
 
         if self.rect.x < -self.rect.width:
             obstacles.pop()  

@@ -1,5 +1,5 @@
 import pygame
-from dino_runner.utils.constants import FONT_STYLE, SCORE_SOUND, BUTTON_SOUND, GAME_OVER
+from dino_runner.utils.constants import FONT_STYLE, SCORE_SOUND, BUTTON_SOUND, GAME_OVER, DEFAULT_TYPE
 
 class Messages:
     def __init__(self):
@@ -85,4 +85,16 @@ class Messages:
                     game.game_speed = 20
                     BUTTON_SOUND.play()
                     game.run()  
-                        
+    def draw_power_up_time(self, game):
+        if game.player.has_power_up:
+            time_to_show = round((game.player.power_up_time_up - pygame.time.get_ticks())/1000, 2)
+            
+            if time_to_show >=0:
+                text = self.font.render(f"Power Up: {time_to_show}", True, (255,0,0))
+                text_rect = text.get_rect()
+                text_rect.x = 425
+                text_rect.y = 100
+                self.screen.blit(text, text_rect)
+            else:
+                game.player.has_power_up = False
+                game.player.type = DEFAULT_TYPE                    

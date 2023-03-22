@@ -3,7 +3,7 @@ import pygame
 from dino_runner.utils.constants import *
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.messages import *
-
+from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 class Game:
     def __init__(self):
@@ -22,6 +22,7 @@ class Game:
         
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
+        self.power_up_manager = PowerUpManager()
         self.messages= Messages()
 
     def execute(self):
@@ -72,18 +73,19 @@ class Game:
         user_input = pygame.key.get_pressed()
         self.player.update(user_input)  
 
-        self.obstacle_manager.update(self)     
+        self.obstacle_manager.update(self)  
+        self.power_up_manager.update(self)   
         
     def draw(self):
         
         self.clock.tick(FPS)
-        
         self.floor()
         self.draw_background()
         self.cloud() 
         
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
+        self.power_up_manager.draw(self.screen)
         self.messages.score(self.screen)
         self.messages.level(self.screen)
 
