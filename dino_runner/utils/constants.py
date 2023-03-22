@@ -18,10 +18,14 @@ BIRD2 = [
     pygame.image.load(os.path.join(IMG_DIR, "Bird2/Bird5.png")),
 ]
 METEOR = [
-    pygame.image.load(os.path.join(IMG_DIR, "Meteor/Meteor1.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Meteor/Meteor2.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Meteor/Meteor3.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Meteor/Meteor4.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Meteor/1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Meteor/2.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Meteor/3.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Meteor/4.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Meteor/5.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Meteor/6.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Meteor/7.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Meteor/8.png")),
 ] 
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "DinoWallpaper.png"))
@@ -44,6 +48,7 @@ RUNNING_HAMMER = [
 JUMPING = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJump.png"))
 JUMPING_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpShield.png"))
 JUMPING_HAMMER = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpHammer.png"))
+
 
 DUCKING = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1.png")),

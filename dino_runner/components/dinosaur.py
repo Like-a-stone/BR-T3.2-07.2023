@@ -19,6 +19,7 @@ class Dinosaur:
         self.dino_duck = False
         self.step_index = 0
         self.jump_vel = JUMP_VEL
+      
     
     def run(self):
         self.image = RUNNING[0] if self.step_index < 5 else RUNNING[1] #ternary operator 
@@ -30,11 +31,10 @@ class Dinosaur:
     def jump(self):
         self.image = JUMPING
 
-        if self.dino_jump:
-            
+        if self.dino_jump:    
             self.dino_rect.y -= self.jump_vel*4
             self.jump_vel -=0.8
-        
+
         if self.jump_vel < -JUMP_VEL:
             self.dino_jump = False
             self.dino_rect.y = Y_POS
@@ -75,4 +75,5 @@ class Dinosaur:
     
     def draw(self, screen):
         screen.blit(self.image, (self.dino_rect.x,self.dino_rect.y))
+
     

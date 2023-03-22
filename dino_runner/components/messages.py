@@ -40,19 +40,19 @@ class Messages:
     
     def show_menu(self, game): #Irá desenhar o menu principal e menu pos-morte.
         game.screen.fill((255, 255, 255))
-
+              #Opções Menu
         if game.death_count == 0:
             text = self.font.render("Press (s) to start playing", True, (0,0,0))
             text_rect = text.get_rect()
             text_rect.center = (550, 300)
             game.screen.blit(text, text_rect)
-        else:
-            self.text = self.font.render("Score: " + str(self.point), True, ((0, 0, 0))) #Score Pos-morte
+        else: #Score Pos-morte
+            self.text = self.font.render("Score: " + str(self.point), True, ((0, 0, 0))) 
             game.screen.blit(self.text, (100, 30))
-
-            self.text = self.font.render("Death: " + str(game.death_count), True, ((0, 0, 0))) #Quantas mortes houve
+              #Quantas mortes houve
+            self.text = self.font.render("Death: " + str(game.death_count), True, ((0, 0, 0))) 
             game.screen.blit(self.text, (100, 80))
-
+              #Opções Menu
             t = self.font.render("Press (c) to keep playing", True, (0,0,0))
             t_rect = t.get_rect()
             t_rect.center = (550, 200)
